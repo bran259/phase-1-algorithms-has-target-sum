@@ -1,5 +1,17 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  
+  const seenNumbers = new Set();
+
+  for (let num of array) {
+    const complement = target - num;
+    if (seenNumbers.has(complement)) {
+      return true; // found two numbers that add up to target
+    }
+    seenNumbers.add(num);
+  }
+
+  return false; // no pair found
 }
 
 /* 
@@ -8,10 +20,24 @@ function hasTargetSum(array, target) {
 
 /* 
   Add your pseudocode here
+function hasTargetSum(array, target):
+  create a Set to store numbers we've seen
+  for each number in array:
+    complement = target - number
+    if complement is already in the Set:
+      return true
+    else:
+      add number to Set
+  if loop ends, return false
 */
 
 /*
   Add written explanation of your solution here
+  Uses a Set for fast lookup (O(1) time).
+
+Overall runtime: O(n), much faster than nested loops (O(n²)).
+
+Handles negatives, duplicates, and edge cases.
 */
 
 // You can run `node index.js` to view these console logs
